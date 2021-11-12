@@ -1,0 +1,15 @@
+Do testowania w Jest w ES2015 potrzebne jest skonfigurowanie:
+https://linkstraffic.net/using-jest-with-es6-modules/
+Babela
+
+
+npm install
+
+Testowanie:
+npx jest -t
+
+Startowanie aplikacji:
+
+npm run server -> developerskie środowisko na localhost:3050
+
+

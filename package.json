@@ -1,0 +1,43 @@
+{
+  "name": "kalendarz",
+  "jest": {
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.mjs$": "babel-jest"
+    },
+    "testRegex": "((\\.|/*.)(test))\\.js?$"
+  },
+  "version": "3.0.0",
+  "description": "Kalendarz z testami",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "server": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "keywords": [
+    "kalendarz"
+  ],
+  "author": "Łukasz",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.4.0",
+    "html-webpack-plugin": "^5.4.0",
+    "jest": "^27.3.1",
+    "standard": "^16.0.4",
+    "style-loader": "^3.3.1"
+  }
+}
