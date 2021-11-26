@@ -1,3 +1,19 @@
-h1 {
+table.calendar {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    border: 1px solid gray;
+}
+table.calendar td {
+    /* border: 1px solid black; */
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+}
+
+/* sunday red color */
+table.calendar tr td:nth-child(7) {
     color: red;
+}
+
+.calendar__buttons {
+    text-align: center;
 }
