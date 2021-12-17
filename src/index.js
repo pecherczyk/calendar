@@ -8,8 +8,8 @@ import Calendar from './Calendar'
 */
 const tdNodes = document.querySelectorAll('td')
 
-function fillTable (month) {
-  const january = new Calendar(1, 2021)
+function fillTable (month, year) {
+  const january = new Calendar(month, year)
   const unix = january.getUnixTable()
 
   /*
@@ -35,12 +35,50 @@ function fillTable (month) {
   })
 
   /*
-  * Change name of month
+  * Set year in caption
+  */
+
+  const caption = document.querySelector('caption')
+  caption.innerHTML = 'Calendar ' + year
+
+  /*
+  * Set name of month bottom table
   */
 
   const tableMonth = document.querySelector('td.calendar__month')
+  tableMonth.setAttribute('data-month', 'javascript')
   const options = { month: 'long' }
   tableMonth.innerHTML = new Intl.DateTimeFormat('en-US', options).format(january.fullDate)
+
+  /*
+  * Set data-month atribute in the table
+  */
+
+  const dataMonth = document.querySelector('td.calendar__month')
+  dataMonth.setAttribute('data-month', month)
+  dataMonth.setAttribute('data-year', year)
 }
 
-fillTable(null)
+fillTable(1, 2021)
+
+const prevButton = document.querySelector('td.button__left')
+// const nextButton = document.querySelector('td.button__right')
+
+prevButton.addEventListener('click', function () {
+  /*
+  * Get month number from table
+  */
+  const calendarDate = document.querySelector('td.calendar__month')
+  let month = calendarDate.getAttribute('data-month')
+  let year = calendarDate.getAttribute('data-year')
+
+  if (parseInt(month) === 1) {
+    month = 12
+    year = year - 1
+  } else {
+    month = month - 1
+  }
+  console.log(month)
+  console.log(year)
+  fillTable(month, year)
+})
