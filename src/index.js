@@ -20,7 +20,7 @@ function fillTable (month, year) {
       const unixTime = unix[index - 7]
       const date = new Date(unixTime * 1000)
       el.innerHTML = date.getDate()
-
+      el.setAttribute('data-day', date.getDate())
       /*
       CSS - change color of previous month and next month
       */
@@ -28,11 +28,17 @@ function fillTable (month, year) {
       if ((index > 6 && index < 14) && date.getDate() > 24) {
         el.style.color = 'gray'
       }
-      if ((index > 34) && date.getDate() < 15) {
+      if ((index > 30) && date.getDate() < 15) {
         el.style.color = 'gray'
       }
     }
   })
+
+  /*
+  CSS mark current day
+  */
+  const currentDayEl = document.querySelector('table.calendar td[data-day]')
+  console.log(currentDayEl)
 
   /*
   * Set year in caption
@@ -51,7 +57,7 @@ function fillTable (month, year) {
   tableMonth.innerHTML = new Intl.DateTimeFormat('en-US', options).format(january.fullDate)
 
   /*
-  * Set data-month atribute in the table
+  * Set data atributes in the table
   */
 
   const dataMonth = document.querySelector('td.calendar__month')
@@ -59,14 +65,16 @@ function fillTable (month, year) {
   dataMonth.setAttribute('data-year', year)
 }
 
-fillTable(1, 2021)
+const now = new Date()
+
+fillTable(now.getMonth() + 1, now.getFullYear())
+console.log(now.getDate())
 
 const prevButton = document.querySelector('td.button__left')
-// const nextButton = document.querySelector('td.button__right')
 
 prevButton.addEventListener('click', function () {
   /*
-  * Get month number from table
+  * Get month number from html table
   */
   const calendarDate = document.querySelector('td.calendar__month')
   let month = calendarDate.getAttribute('data-month')
@@ -78,7 +86,24 @@ prevButton.addEventListener('click', function () {
   } else {
     month = month - 1
   }
-  console.log(month)
-  console.log(year)
+  fillTable(month, year)
+})
+
+const nextButton = document.querySelector('td.button__right')
+
+nextButton.addEventListener('click', function () {
+  /*
+  * Get month number from html table
+  */
+  const calendarDate = document.querySelector('td.calendar__month')
+  let month = calendarDate.getAttribute('data-month')
+  let year = calendarDate.getAttribute('data-year')
+
+  if (parseInt(month) === 12) {
+    year = parseInt(year) + 1
+    month = 1
+  } else {
+    month = parseInt(month) + 1
+  }
   fillTable(month, year)
 })
