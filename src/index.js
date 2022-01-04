@@ -4,41 +4,52 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import Calendar from './Calendar'
 
 /*
-* Get all td elements in Calendar table
+* Get current time
+*/
+const now = new Date()
+
+/*
+* Get all td elements from html template
 */
 const tdNodes = document.querySelectorAll('td')
 
 function fillTable (month, year) {
-  const january = new Calendar(month, year)
-  const unix = january.getUnixTable()
+  const calendar = new Calendar(month, year)
+  const unix = calendar.getUnixTable()
+
+  /*
+  * Data from current state of calendar
+  */
+  const stateMonth = document.querySelector('td.calendar__month')
+  stateMonth.setAttribute('data-month', month)
+  stateMonth.setAttribute('data-year', year)
 
   /*
   * Fill the table with values
   */
   tdNodes.forEach((el, index) => {
+    /*
+    * Index range ommits table headers
+    */
     if (index > 6 && index < 49) {
       const unixTime = unix[index - 7]
       const date = new Date(unixTime * 1000)
       el.innerHTML = date.getDate()
       el.setAttribute('data-day', date.getDate())
+      el.setAttribute('data-month', date.getMonth() + 1)
+      el.setAttribute('data-dayofweek', date.getDay())
+
       /*
-      CSS - change color of previous month and next month
+      Mark cells from previous and next month
       */
 
-      if ((index > 6 && index < 14) && date.getDate() > 24) {
-        el.style.color = 'gray'
-      }
-      if ((index > 30) && date.getDate() < 15) {
-        el.style.color = 'gray'
+      if (parseInt(el.getAttribute('data-month')) !== parseInt(stateMonth.getAttribute('data-month'))) {
+        el.setAttribute('data-current', 'notcurrent')
+      } else {
+        el.setAttribute('data-current', 'current')
       }
     }
   })
-
-  /*
-  CSS mark current day
-  */
-  const currentDayEl = document.querySelector('table.calendar td[data-day]')
-  console.log(currentDayEl)
 
   /*
   * Set year in caption
@@ -52,26 +63,34 @@ function fillTable (month, year) {
   */
 
   const tableMonth = document.querySelector('td.calendar__month')
-  tableMonth.setAttribute('data-month', 'javascript')
   const options = { month: 'long' }
-  tableMonth.innerHTML = new Intl.DateTimeFormat('en-US', options).format(january.fullDate)
+  tableMonth.innerHTML = new Intl.DateTimeFormat('en-US', options).format(calendar.fullDate)
 
   /*
   * Set data atributes in the table
   */
-
-  const dataMonth = document.querySelector('td.calendar__month')
-  dataMonth.setAttribute('data-month', month)
-  dataMonth.setAttribute('data-year', year)
 }
 
-const now = new Date()
+function colorTable () {
+  const previousDays = document.querySelectorAll("[data-current='notcurrent']")
+  previousDays.forEach(function (el, index) {
+    el.style.color = 'gray'
+  })
 
-fillTable(now.getMonth() + 1, now.getFullYear())
-console.log(now.getDate())
+  const currentDays = document.querySelectorAll("[data-current='current']")
+  currentDays.forEach(el => {
+    el.style.color = 'black'
+  })
+
+  const sunday = document.querySelectorAll("[data-dayofweek='0']")
+  sunday.forEach(el => {
+    if (el.getAttribute('data-current') === 'current') {
+      el.style.color = 'red'
+    }
+  })
+}
 
 const prevButton = document.querySelector('td.button__left')
-
 prevButton.addEventListener('click', function () {
   /*
   * Get month number from html table
@@ -87,10 +106,10 @@ prevButton.addEventListener('click', function () {
     month = month - 1
   }
   fillTable(month, year)
+  colorTable()
 })
 
 const nextButton = document.querySelector('td.button__right')
-
 nextButton.addEventListener('click', function () {
   /*
   * Get month number from html table
@@ -106,4 +125,8 @@ nextButton.addEventListener('click', function () {
     month = parseInt(month) + 1
   }
   fillTable(month, year)
+  colorTable()
 })
+
+fillTable(now.getMonth() + 1, now.getFullYear())
+colorTable()

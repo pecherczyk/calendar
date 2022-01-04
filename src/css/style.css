@@ -10,11 +10,6 @@ table.calendar td {
     text-align: center;
 }
 
-/* sunday red color */
-table.calendar tr td:nth-child(7) {
-    color: red;
-}
-
 .calendar__buttons {
     text-align: center;
 }

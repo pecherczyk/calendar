@@ -1,2 +1,1 @@
-Poprawić błędne formatowanie dat z następnego miesiąca
 Dodać markowanie biężącego dnia
