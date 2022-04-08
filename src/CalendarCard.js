@@ -1,5 +1,5 @@
 /** Class representing a UTC Date */
-class Calendar {
+class CalendarCard {
   /**
    *
    * @param {number} year - Full Year ex. 1998
@@ -90,4 +90,4 @@ class Calendar {
   }
 }
 
-export default Calendar
+export default CalendarCard

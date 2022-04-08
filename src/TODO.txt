@@ -1,1 +1,2 @@
 Dodać markowanie biężącego dnia
+i18n w parametrach kalendarza

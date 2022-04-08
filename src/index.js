@@ -1,28 +1,28 @@
 import './css/style.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-
-import Calendar from './Calendar'
-
+import CalendarCard from './CalendarCard'
+import calendarPrintDates from './calendarPrintDates'
+import calendarElements from './calendarDOM'
 /*
 * Get current time
 */
 const now = new Date()
-
 /*
 * Get all td elements from html template
 */
 const tdNodes = document.querySelectorAll('td')
 
+calendarPrintDates(4, 2022)
+
 function fillTable (month, year) {
-  const calendar = new Calendar(month, year)
+  const calendar = new CalendarCard(month, year)
   const unix = calendar.getUnixTable()
 
   /*
   * Data from current state of calendar
   */
-  const stateMonth = document.querySelector('td.calendar__month')
-  stateMonth.setAttribute('data-month', month)
-  stateMonth.setAttribute('data-year', year)
+  calendarElements.month.setAttribute('data-month', month)
+  calendarElements.month.setAttribute('data-year', year)
 
   /*
   * Fill the table with values
@@ -43,10 +43,18 @@ function fillTable (month, year) {
       Mark cells from previous and next month
       */
 
-      if (parseInt(el.getAttribute('data-month')) !== parseInt(stateMonth.getAttribute('data-month'))) {
+      if (parseInt(el.getAttribute('data-month')) !== parseInt(calendarElements.month.getAttribute('data-month'))) {
         el.setAttribute('data-current', 'notcurrent')
       } else {
         el.setAttribute('data-current', 'current')
+      }
+      /*
+      * Mark current day
+      */
+
+      if (parseInt(el.getAttribute('data-day')) === parseInt(now.getDate()) &&
+          parseInt(el.getAttribute('data-month')) === parseInt(now.getMonth() + 1)) {
+        el.setAttribute('data-now', 'now')
       }
     }
   })
@@ -90,8 +98,26 @@ function colorTable () {
   })
 }
 
-const prevButton = document.querySelector('td.button__left')
-prevButton.addEventListener('click', function () {
+function markNow (color) {
+  console.log('-------NOW-------')
+  console.log(parseInt(now.getDate()))
+  console.log(parseInt(now.getMonth() + 1))
+  console.log(now.getFullYear())
+
+  /*
+  * Get Date from current table (view)
+  */
+
+  console.log('---------GETy----z bieżącego widoku')
+  const year = document.querySelector('[data-year]')
+  console.log(parseInt(year.getAttribute('data-year')))
+  const month = document.querySelector('td.calendar__month[data-month]')
+  console.log(month.getAttribute('data-month'))
+  const day = document.querySelector('td[data-day]')
+  console.log(day.getAttribute('data-day'))
+}
+
+calendarElements.prevButton.addEventListener('click', function () {
   /*
   * Get month number from html table
   */
@@ -109,8 +135,7 @@ prevButton.addEventListener('click', function () {
   colorTable()
 })
 
-const nextButton = document.querySelector('td.button__right')
-nextButton.addEventListener('click', function () {
+calendarElements.nextButton.addEventListener('click', function () {
   /*
   * Get month number from html table
   */
@@ -128,5 +153,6 @@ nextButton.addEventListener('click', function () {
   colorTable()
 })
 
-fillTable(now.getMonth() + 1, now.getFullYear())
-colorTable()
+// fillTable(now.getMonth() + 1, now.getFullYear())
+// colorTable()
+// markNow('yellow')

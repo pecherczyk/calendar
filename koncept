@@ -1,0 +1,9 @@
+CalendarCard.js
+
+Klasa CalendarCard opisuje jeden miesiąc kalendarzowy z uwzględnieniem poprzedniego miesiąca oraz następnego
+łącznie składa sie z 42 pół (cell) zawierającej dany dzień.
+Założenia:
+- Tydzień zaczyna się w poniedziałek
+- Czas UTC
+- klasa ma generować tablicę unixtimestampów określąjącego datę np. 86400 daje 1970-01-02 00:00:00 w UTC
+- klasa ma generować tablice obiektów o strukturze: {unixDate (int), dayofweek (int 1-7), isNow (boolean)}
