@@ -13,3 +13,7 @@ table.calendar td {
 .calendar__buttons {
     text-align: center;
 }
+
+td[data-now=true] {
+    background-color: yellow;
+}

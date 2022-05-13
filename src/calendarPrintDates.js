@@ -1,5 +1,6 @@
 import calendarDOM from './calendarDOM'
 import CalendarCard from './CalendarCard'
+import register from './calendarRegister'
 
 function calendarPrintDates (month, year) {
   const calendar = new CalendarCard(month, year)
@@ -19,6 +20,13 @@ function calendarPrintDates (month, year) {
     el.setAttribute('data-day', date.getDate())
     el.setAttribute('data-month', date.getMonth() + 1)
     el.setAttribute('data-dayofweek', date.getDay())
+
+    if (el.getAttribute('data-day') == register.nowDay && el.getAttribute('data-month') == register.nowMonth) {
+      console.log('lipa')
+      el.setAttribute('data-now', true)
+    } else {
+      el.setAttribute('data-now', false)
+    }
   })
 }
 
