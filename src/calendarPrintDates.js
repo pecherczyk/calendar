@@ -20,12 +20,27 @@ function calendarPrintDates (month, year) {
     el.setAttribute('data-day', date.getDate())
     el.setAttribute('data-month', date.getMonth() + 1)
     el.setAttribute('data-dayofweek', date.getDay())
-
-    if (el.getAttribute('data-day') == register.nowDay && el.getAttribute('data-month') == register.nowMonth) {
-      console.log('lipa')
+    el.setAttribute('data-year', date.getFullYear())
+    /*
+  * Mark today
+  */
+    if (
+      parseInt(el.getAttribute('data-day')) === parseInt(register.nowDay) &&
+      parseInt(el.getAttribute('data-month')) === parseInt(register.nowMonth) &&
+      parseInt(el.getAttribute('data-year')) === parseInt(register.nowYear)
+    ) {
       el.setAttribute('data-now', true)
     } else {
       el.setAttribute('data-now', false)
+    }
+    // Mark current days
+
+    if (
+      (date.getMonth() + 1) === parseInt(register.month)
+    ) {
+      el.setAttribute('data-current', true)
+    } else {
+      el.setAttribute('data-current', false)
     }
   })
 }

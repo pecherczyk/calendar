@@ -8,7 +8,7 @@ import calendarElements from './calendarDOM'
 import { prevButtonHandler, nextButtonHandeler, logRegister } from './calendarEventsHandlers'
 
 // Set captions values
-calendarElements.caption.innerHTML = 'myCalendar'
+calendarElements.caption.innerHTML = 'myCalendar ' + register.year
 calendarElements.headerCells.forEach((el, index) => {
   el.innerHTML = dayOfWeekArray(settings.locale)[index]
 })

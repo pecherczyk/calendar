@@ -15,5 +15,15 @@ table.calendar td {
 }
 
 td[data-now=true] {
-    background-color: yellow;
+    color: #fcfcfd;
+    background-color: #cacaca;
+    border-radius: 48px;
+}
+
+td[data-dayofweek="0"] {
+    color: red;
+}
+
+td[data-current=false] {
+    color:#cacaca;
 }

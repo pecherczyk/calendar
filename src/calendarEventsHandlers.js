@@ -25,10 +25,12 @@ export const nextButtonHandeler = () => {
   register.clickedNext()
   calendarPrintDates(register.month, register.year)
   calendarDOM.month.innerHTML = monthsNamesArray(settings.locale)[register.month - 1]
+  calendarDOM.caption.innerHTML = register.year
 }
 
 export const prevButtonHandler = () => {
   register.clickedPrev()
   calendarPrintDates(register.month, register.year)
   calendarDOM.month.innerHTML = monthsNamesArray(settings.locale)[register.month - 1]
+  calendarDOM.caption.innerHTML = register.year
 }
