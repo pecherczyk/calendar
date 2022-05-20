@@ -6,7 +6,9 @@ const calendarDOM = {
   month: document.querySelector('td.calendar__month'),
   prevButton: document.querySelector('td.button__left'),
   nextButton: document.querySelector('td.button__right'),
-  now: new Date()
+  now: new Date(),
+  form: document.querySelector('form'),
+  dzik: document.getElementById('dzik')
 }
 
 export default calendarDOM

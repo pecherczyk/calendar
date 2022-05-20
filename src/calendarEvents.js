@@ -42,9 +42,3 @@ calendarElements.nextButton.addEventListener('click', function () {
   colorTable()
   console.log(register)
 })
-
-const dupa = calendarElements.nextButton.addEventListener('dblclick', function () {
-  console.log('sssss')
-})
-
-export default dupa

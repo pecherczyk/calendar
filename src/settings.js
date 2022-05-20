@@ -1,5 +1,5 @@
 const settings = {
-  locale: 'pl'
+  locale: 'ru'
 }
 
 export default settings
