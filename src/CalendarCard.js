@@ -67,19 +67,16 @@ class CalendarCard {
         pushDayToArray(monday)
         break
       }
-      // wypada w piątek
       case 5: {
         const monday = this.prevDate.setUTCDate(-3) / 1000
         pushDayToArray(monday)
         break
       }
-      // wypada w sobotę
       case 6: {
         const monday = this.prevDate.setUTCDate(-4) / 1000
         pushDayToArray(monday)
         break
       }
-      // wypada w niedzielę
       case 7: {
         const monday = this.prevDate.setUTCDate(-5) / 1000
         pushDayToArray(monday)

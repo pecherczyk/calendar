@@ -1,7 +1,21 @@
+body {
+ background-color: whitesmoke;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 
 table.calendar {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
     border: 1px solid gray;
+    flex-direction: row;
 }
 
 table.calendar td {
@@ -10,6 +24,10 @@ table.calendar td {
     min-height: 48px;
     padding: 8px;
     text-align: center;
+}
+
+form {
+    margin: 10px
 }
 
 .calendar__buttons {

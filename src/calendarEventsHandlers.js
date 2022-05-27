@@ -1,8 +1,6 @@
-import calendarDOM from './calendarDOM'
 import calendarPrintDates from './calendarPrintDates'
 import register from './calendarRegister'
-import { monthsNamesArray } from './helpers/dayOfWeekArray'
-import settings from './settings'
+import setCaption from './calendarSetCaption'
 
 export const logPrevClick = () => {
   console.log('Prev button clicked!')
@@ -24,13 +22,11 @@ export const registerPrev = () => {
 export const nextButtonHandeler = () => {
   register.clickedNext()
   calendarPrintDates(register.month, register.year)
-  calendarDOM.month.innerHTML = monthsNamesArray(settings.locale)[register.month - 1]
-  calendarDOM.caption.innerHTML = register.year
+  setCaption()
 }
 
 export const prevButtonHandler = () => {
   register.clickedPrev()
   calendarPrintDates(register.month, register.year)
-  calendarDOM.month.innerHTML = monthsNamesArray(settings.locale)[register.month - 1]
-  calendarDOM.caption.innerHTML = register.year
+  setCaption()
 }

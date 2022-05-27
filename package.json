@@ -17,7 +17,7 @@
   "scripts": {
     "test": "jest",
     "server": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack --config webpack.prod.js"
   },
   "keywords": [
     "kalendarz"
